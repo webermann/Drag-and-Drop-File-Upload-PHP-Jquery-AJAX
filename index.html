@@ -1,62 +1,62 @@
 <html>
-	<head>
-		<title></title>
-		<link rel="stylesheet" type="text/css" href="css/global.css">
-	</head>
-	<body>
-		<h1>Drop and Upload Files</h1>
-		<div id="uploads"></div>
-		<br>
-		<div class="dropzone" id="dropzone">Drop files here</div>
-		<br>
-		<a href="https://github.com/webermann/drag-n-drop-and-upload-file">Github</a>
+    <head>
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="css/global.css">
+    </head>
+    <body>
+        <h1>Drop and Upload Files</h1>
+        <div id="uploads"></div>
+        <br>
+        <div class="dropzone" id="dropzone">Drop files here</div>
+        <br>
+        <a href="https://github.com/webermann/drag-n-drop-and-upload-file">Github</a>
 
-		<script>
-			(function(){
-				var dropzone = document.getElementById('dropzone');
+        <script>
+            (function() {
+                var dropzone = document.getElementById('dropzone');
 
-				var displayUploads = function(data){
-					var uploads = document.getElementById('uploads'),
-					anchor,
-					x;
+                var displayUploads = function(data) {
+                    var uploads = document.getElementById('uploads'),
+                    anchor,
+                    x;
 
-					for(x = 0; x < data.length; x++){
-						anchor=document.createElement('a');
-						anchor.href = data[x].file;
-						anchor.innerText = data[x].name;
-						uploads.appendChild(anchor);
-					}
-				}
-				var upload = function(files){
-					var formData = new FormData(),
-					xhr = new XMLHttpRequest(),
-					x;
+                    for (x = 0; x < data.length; x++) {
+                        anchor=document.createElement('a');
+                        anchor.href = data[x].file;
+                        anchor.innerText = data[x].name;
+                        uploads.appendChild(anchor);
+                    }
+                }
+                var upload = function(files) {
+                    var formData = new FormData(),
+                    xhr = new XMLHttpRequest(),
+                    x;
 
-					for(x = 0; x<files.length; x++){
-						formData.append('file[]',files[x]);
-					}
-					xhr.onload = function(){
-						var data = JSON.parse(this.responseText);
-						console.log(data);
-						displayUploads(data);
-					}
-					xhr.open('post','upload.php');
-					xhr.send(formData);
-				}
-				dropzone.ondrop = function(e){
-					e.preventDefault();
-					this.className ="dropzone";
-					upload(e.dataTransfer.files);
-				}
-				dropzone.ondragover = function(){
-					this.className = 'dropzone dragover';
-					return false;
-				}
-				dropzone.ondragleave = function(){
-					this.className = 'dropzone';
-					return false;
-				}
-			}());
-		</script>
-	</body>
+                    for(x = 0; x<files.length; x++) {
+                        formData.append('file[]',files[x]);
+                    }
+                    xhr.onload = function() {
+                        var data = JSON.parse(this.responseText);
+                        console.log(data);
+                        displayUploads(data);
+                    }
+                    xhr.open('post','upload.php');
+                    xhr.send(formData);
+                }
+                dropzone.ondrop = function(e) {
+                    e.preventDefault();
+                    this.className ="dropzone";
+                    upload(e.dataTransfer.files);
+                }
+                dropzone.ondragover = function() {
+                    this.className = 'dropzone dragover';
+                    return false;
+                }
+                dropzone.ondragleave = function() {
+                    this.className = 'dropzone';
+                    return false;
+                }
+            }());
+        </script>
+    </body>
 </html>
