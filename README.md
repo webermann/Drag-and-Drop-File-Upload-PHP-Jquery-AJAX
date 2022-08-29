@@ -1,14 +1,11 @@
-Drag-and-Drop-File-Upload-PHP-Jquery-AJAX
-=========================================
+#Drag'n'Drop and upload File
 
-The is the simplest and easy to understand version of upload files using HTML5 drag and drop feature.
+Simple version of upload files using HTML5 drag and drop feature.
 
 Installation Guide:
 
-1.Install Xampp on your machine.
+1. Upload to Webserver
+2. Open index.html 
+3. Drag'n'Drop some files
 
-2.Run the project using the local server.
-
-All the files will be uploaded to the folder named "uploads"
-
-Enjoy
+All files will be uploaded to the folder named "../upload" 
